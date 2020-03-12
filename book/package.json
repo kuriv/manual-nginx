@@ -1,0 +1,36 @@
+{
+  "name": "manual-nginx",
+  "version": "1.0.1",
+  "description": "Nginx 手册",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuriv/manual-nginx.git"
+  },
+  "keywords": [
+    "nginx",
+    "nginx-proxy",
+    "nginx-configuration",
+    "nginx-server",
+    "nginx-module"
+  ],
+  "author": "Kuriv Vesti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuriv/manual-nginx/issues"
+  },
+  "homepage": "https://github.com/kuriv/manual-nginx#readme",
+  "dependencies": {
+    "gitbook-plugin-back-to-top-button": "^0.1.4",
+    "gitbook-plugin-chapter-fold": "0.0.4",
+    "gitbook-plugin-favicon": "0.0.2",
+    "gitbook-plugin-hide-element": "0.0.4",
+    "gitbook-plugin-lightbox": "^1.2.0",
+    "gitbook-plugin-prism": "^2.4.0",
+    "gitbook-plugin-search-pro": "^2.0.2",
+    "gitbook-plugin-splitter": "0.0.8"
+  }
+}
