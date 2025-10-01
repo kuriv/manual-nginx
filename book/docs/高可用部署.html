@@ -277,6 +277,41 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x9AD8;&#x53EF;&#x7528;&#x90E8;&#x7F72;">&#x9AD8;&#x53EF;&#x7528;&#x90E8;&#x7F72;</h1>
+<p>&#x51C6;&#x5907;&#x597D;&#x4E24;&#x53F0; Nginx &#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5206;&#x522B;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5728; Ubuntu &#x7CFB;&#x7EDF;&#x4E2D;&#x5B89;&#x88C5; Keepalived &#x670D;&#x52A1;&#x3002;</p>
+<pre class="language-"><code>sudo apt-get install keepalived
+</code></pre><p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x68C0;&#x67E5; Keepalived &#x670D;&#x52A1;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x3002;</p>
+<pre class="language-"><code>sudo systemctl status keepalived
+</code></pre><p>&#x4FEE;&#x6539;&#x7B2C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x7684; <code>/etc/keepalived/keepalived.conf</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#x3002;</p>
+<pre class="language-"><code>vrrp_instance VI_1 {
+    state MASTER
+    interface eth0
+    virtual_router_id 51
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.10.100
+    }
+}
+</code></pre><p>&#x4FEE;&#x6539;&#x7B2C;&#x4E8C;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x7684; <code>/etc/keepalived/keepalived.conf</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#x3002;</p>
+<pre class="language-"><code>vrrp_instance VI_1 {
+    state BACKUP
+    interface eth0
+    virtual_router_id 51
+    priority 80
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        192.168.10.100
+    }
+}
+</code></pre><p>&#x91CD;&#x542F; Keepalived &#x670D;&#x52A1;&#x540E;&#xFF0C;XXX</p>
 
                                 
                                 </section>
@@ -316,7 +351,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"高可用部署","level":"1.1.7","depth":2,"previous":{"title":"负载均衡","level":"1.1.6","depth":2,"path":"docs/负载均衡.md","ref":"docs/负载均衡.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Nginx","language":"zh-hans","gitbook":">=3.0.0","description":"Nginx 手册","direction":"ltr"},"file":{"path":"docs/高可用部署.md","mtime":"2025-09-30T12:57:16.892Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-09-30T17:28:16.968Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"高可用部署","level":"1.1.7","depth":2,"previous":{"title":"负载均衡","level":"1.1.6","depth":2,"path":"docs/负载均衡.md","ref":"docs/负载均衡.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Nginx","language":"zh-hans","gitbook":">=3.0.0","description":"Nginx 手册","direction":"ltr"},"file":{"path":"docs/高可用部署.md","mtime":"2025-10-01T15:02:22.631Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2025-10-01T15:02:25.488Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
