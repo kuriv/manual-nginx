@@ -74,10 +74,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="反向代理.html" />
+    <link rel="next" href="配置文件.html" />
     
     
-    <link rel="prev" href="配置文件.html" />
+    <link rel="prev" href="流量控制.html" />
     
 
     
@@ -163,12 +163,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.3" data-path="配置文件.html">
+        <li class="chapter " data-level="1.1.3" data-path="路径匹配.html">
             
-                <a href="配置文件.html">
+                <a href="路径匹配.html">
             
                     
-                    配置文件
+                    路径匹配
             
                 </a>
             
@@ -176,7 +176,33 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.1.4" data-path="虚拟主机.html">
+        <li class="chapter " data-level="1.1.4" data-path="访问认证.html">
+            
+                <a href="访问认证.html">
+            
+                    
+                    访问认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="流量控制.html">
+            
+                <a href="流量控制.html">
+            
+                    
+                    流量控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.6" data-path="虚拟主机.html">
             
                 <a href="虚拟主机.html">
             
@@ -189,7 +215,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.5" data-path="反向代理.html">
+        <li class="chapter " data-level="1.1.7" data-path="配置文件.html">
+            
+                <a href="配置文件.html">
+            
+                    
+                    配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.8" data-path="反向代理.html">
             
                 <a href="反向代理.html">
             
@@ -202,7 +241,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.6" data-path="负载均衡.html">
+        <li class="chapter " data-level="1.1.9" data-path="负载均衡.html">
             
                 <a href="负载均衡.html">
             
@@ -215,7 +254,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.7" data-path="高可用部署.html">
+        <li class="chapter " data-level="1.1.10" data-path="高可用部署.html">
             
                 <a href="高可用部署.html">
             
@@ -279,17 +318,37 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x865A;&#x62DF;&#x4E3B;&#x673A;">&#x865A;&#x62DF;&#x4E3B;&#x673A;</h1>
-<p>&#x4FEE;&#x6539; <code>/etc/nginx/sites-enabled/default</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5982;&#x4E0B;&#xFF0C;&#x901A;&#x8FC7;&#x7AEF;&#x53E3;&#x53F7;&#x8BBF;&#x95EE;&#x6307;&#x5B9A;&#x7684; Web &#x670D;&#x52A1;&#x3002;</p>
-<pre class="language-"><code>server {
-    listen 8001;
-    server_name 127.0.0.1;
-    root /var/www/html/site-a;
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x7AEF;&#x53E3;&#x53F7;&#x8BBF;&#x95EE;&#x6307;&#x5B9A;&#x7684; Web &#x670D;&#x52A1;&#xFF0C;&#x4FEE;&#x6539; <code>nginx.conf</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x5982;&#x4E0B;&#x3002;</p>
+<pre class="language-"><code>user                nginx;
+worker_processes    auto;
+
+events {
+    worker_connections  1024;
 }
 
-server {
-    listen 8002;
-    server_name 127.0.0.1;
-    root /var/www/html/site-b;
+http {
+    include         mime.types;
+    default_type    application/octet-stream;
+
+    server {
+        listen      8001;
+        server_name localhost;
+
+        location / {
+            root    /usr/share/nginx/html/8001;
+            index   index.html index.htm;
+        }
+    }
+
+    server {
+        listen      8002;
+        server_name localhost;
+
+        location / {
+            root    /usr/share/nginx/html/8002;
+            index   index.html index.htm;
+        }
+    }
 }
 </code></pre>
                                 
@@ -318,12 +377,12 @@ server {
 
             
                 
-                <a href="配置文件.html" class="navigation navigation-prev " aria-label="Previous page: 配置文件">
+                <a href="流量控制.html" class="navigation navigation-prev " aria-label="Previous page: 流量控制">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="反向代理.html" class="navigation navigation-next " aria-label="Next page: 反向代理">
+                <a href="配置文件.html" class="navigation navigation-next " aria-label="Next page: 配置文件">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -334,7 +393,7 @@ server {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"虚拟主机","level":"1.1.4","depth":2,"next":{"title":"反向代理","level":"1.1.5","depth":2,"path":"docs/反向代理.md","ref":"docs/反向代理.md","articles":[]},"previous":{"title":"配置文件","level":"1.1.3","depth":2,"path":"docs/配置文件.md","ref":"docs/配置文件.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Nginx","language":"zh-hans","gitbook":">=3.0.0","description":"Nginx 手册","direction":"ltr"},"file":{"path":"docs/虚拟主机.md","mtime":"2025-09-30T17:27:01.094Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-03-08T14:53:13.037Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"虚拟主机","level":"1.1.6","depth":2,"next":{"title":"配置文件","level":"1.1.7","depth":2,"path":"docs/配置文件.md","ref":"docs/配置文件.md","articles":[]},"previous":{"title":"流量控制","level":"1.1.5","depth":2,"path":"docs/流量控制.md","ref":"docs/流量控制.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","chapter-fold","favicon","hide-element","lightbox","-highlight","prism","-lunr","-search","search-pro","splitter","livereload"],"root":"","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"prism":{"css":["prismjs/themes/prism-okaidia.css"]},"livereload":{},"splitter":{},"search-pro":{},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"favicon":{"shortcut":"favicon.ico","bookmark":"favicon.ico","appleTouch":"favicon.png","appleTouchMore":{"120x120":"favicon-120x120.png","180x180":"favicon-180x180.png"}},"lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Kuriv Vesti","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"isbn":"","variables":{},"title":"Nginx","language":"zh-hans","gitbook":">=3.0.0","description":"Nginx 手册","direction":"ltr"},"file":{"path":"docs/虚拟主机.md","mtime":"2026-09-28T16:47:49.942Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2026-09-28T17:06:12.362Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
